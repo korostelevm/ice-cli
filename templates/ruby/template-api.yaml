@@ -27,6 +27,9 @@ Resources:
       Runtime: ruby2.7
       Timeout: 30
       Policies:
+        - AWSLambdaBasicExecutionRole
+        - AWSLambdaReadOnlyAccess
+        - AWSXrayWriteOnlyAccess
         - Statement:
             [{
                 "Effect": "Allow",
