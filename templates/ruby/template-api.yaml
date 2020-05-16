@@ -1,0 +1,76 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Serverless Express Microfrontend
+
+Parameters:
+  Param: 
+      Type: String
+      Default: 'asdf'
+
+Resources:
+  ServiceApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      DefinitionUri: ./api.yaml
+      StageName: Prod
+      Variables:
+        ServiceApiFunction: !Ref ServiceApiFunction
+
+  ServiceApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./service
+      Handler: service.lambda_handler
+      Tracing: Active
+      MemorySize: 1024
+      Runtime: ruby2.7
+      Timeout: 30
+      Policies:
+        - Statement:
+            [{
+                "Effect": "Allow",
+                "Action": ["dynamodb:*"],
+                "Resource": "*"
+            }]
+      Environment:
+          Variables:
+            GEM_PATH: /opt/ruby/2.7.0
+      Layers:
+        - !Ref libs
+      Events:
+        ProxyApiRoot:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ServiceApi
+            Path: /
+            Method: ANY
+        ProxyApiGreedy:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ServiceApi
+            Path: /{proxy+}
+            Method: ANY
+        
+  libs:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: blank-ruby-lib
+      Description: Dependencies for the blank-ruby sample app.
+      ContentUri: lib/.
+      CompatibleRuntimes:
+        - ruby2.7
+
+Outputs:
+    DeploymentStrategy:
+        Description: 'Deployment strategy instruction for the service'
+        Value: ez_zdt
+
+    ApiUrl:
+        Description: The API URL
+        Value: !Sub "https://${ServiceApi}.execute-api.${AWS::Region}.amazonaws.com/"
+
+    LambdaServiceApiLogs:
+        Description: "Api Lambda Logs"
+        Value: !Sub "https://console.aws.amazon.com/cloudwatch/home?region=${AWS::Region}#logStream:group=/aws/lambda/${ServiceApiFunction};streamFilter=typeLogStreamPrefix"
+    

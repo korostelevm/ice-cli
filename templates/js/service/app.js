@@ -20,27 +20,15 @@ router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: true }))
 router.use(awsServerlessExpressMiddleware.eventContext())
 
-var mongoClient = require("mongodb").MongoClient;
 
-var db = null;
-app.use(function(req, res, next){
-    if(db){return next()}
-
-    return mongoClient.connect(process.env.CosmosDbConnectionString, async function (err, client) {
-      db = client.db('dev');
-      next()
-  })
-})
 
 
 router.get('/', (req, res) => {
   res.sendFile(`${__dirname}/public/index.html`)
 })
 
-
-
 router.post('/users', async (req, res) => {
-  var users = await models.users.get_users(db, req.body)
+  var users = await models.users.get_users(req.body)
   res.json(users)
 })
 
@@ -86,8 +74,6 @@ router.get('/public/*', (req, res) => {
 app.use('/', router)
 app.use(AWSXRay.express.closeSegment());
 
-
-// Export your express server so you can import it in the lambda function.
 module.exports = app
 
 

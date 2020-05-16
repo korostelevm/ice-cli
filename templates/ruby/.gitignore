@@ -161,4 +161,3 @@ Snowflake.json
 .env.json
 ExpressLambda.json
 template-api-built.yaml
-lib/*
