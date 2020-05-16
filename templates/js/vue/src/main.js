@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import './components/_globals'
 import vueCustomElement from 'vue-custom-element'
-import { EventBus } from './EventBus.js';
 Vue.use(vueCustomElement);
 
 Vue.prototype.$api = 'http://localhost:3000'
