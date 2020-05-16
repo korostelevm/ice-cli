@@ -23,9 +23,13 @@ function parseArgumentsIntoOptions(rawArgs) {
    skipPrompts: args['--yes'] || false,
    git: args['--git'] || false,
    template: args._[0],
-   runInstall: args['--install'] || false,
+   runInstall: args['--install'] || true,
    name: args['--name'] || false,
  };
+}
+
+function isNotSpecial(str){
+    return !/[~`!#$%\^&*+=\[\]\\';,/{}|\\":<>\?]/g.test(str);
 }
 
 async function promptForMissingOptions(options) {
@@ -55,7 +59,15 @@ async function promptForMissingOptions(options) {
         name: 'name',
         message: 'Name your lambda app:',
         validate: function(a){
-            return a.length>0}
+            var done = this.async();
+            var valid = a.length>0 && isNotSpecial(a)
+            if(!a.length>0)
+                done('You need to provide a name')
+            else if(!valid)
+                done('The name contains invalid characters')
+            else
+                done(null, true);
+            }
       });
     }
    
@@ -72,7 +84,7 @@ async function promptForMissingOptions(options) {
     return {
       ...options,
       template: options.template || answers.template,
-      name: options.name || answers.name,
+      name: options.name || answers.name.trim(),
       git: options.git || answers.git,
     };
    }
@@ -80,6 +92,5 @@ async function promptForMissingOptions(options) {
    export async function cli(args) {
     let options = parseArgumentsIntoOptions(args);
     options = await promptForMissingOptions(options);
-    console.log(options);
     await createProject(options);
    }

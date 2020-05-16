@@ -6,7 +6,7 @@ Globals:
 Parameters:
   ServiceSubDomainName:
     Type: String
-    Default: 'ruby'
+    Default: 'template-subdomain'
   RootUrl:
     Type: String
     Default: '{{resolve:ssm:/account/root-url:1}}'

@@ -4,10 +4,10 @@ Transform: AWS::Serverless-2016-10-31
 Description: Serverless Express Microfrontend
 
 Parameters:
-  CosmosDbConnectionString: 
+  Param: 
       Type: String
-      Default: '{{resolve:ssm:/account/cosmosdb-connection-string:1}}'
-
+      Default: 'asdf'
+      
 Resources:
   ServiceApi:
     Type: AWS::Serverless::Api
