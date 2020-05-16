@@ -1,4 +1,4 @@
-##ice cold lambdas
+## ice cli
 
 ```
 $ npm i @coldlambda/ice-cli
