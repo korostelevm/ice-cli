@@ -1,6 +1,6 @@
 {
-  "name": "@korostelevm/ice-cli",
-  "version": "1.0.0",
+  "name": "@coldlambda/ice-cli",
+  "version": "1.0.1",
   "description": "asdfasdf",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/korostelevm/ice-cli.git"
   },
   "bin": {
-    "@korostelevm/ice": "bin/ice",
+    "@coldlambda/ice": "bin/ice",
     "ice": "bin/ice"
   },
   "publishConfig": {
@@ -19,7 +19,10 @@
   },
   "keywords": [
     "cli",
-    "create-project"
+    "aws",
+    "lambda",
+    "vue",
+    "express"
   ],
   "author": "",
   "license": "ISC",
@@ -28,6 +31,8 @@
   },
   "homepage": "https://github.com/korostelevm/ice-cli#readme",
   "dependencies": {
-    "esm": "^3.2.25"
+    "arg": "^4.1.3",
+    "esm": "^3.2.25",
+    "inquirer": "^7.1.0"
   }
 }
