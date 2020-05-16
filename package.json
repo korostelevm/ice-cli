@@ -1,5 +1,5 @@
 {
-  "name": "@korostelevm/create-project",
+  "name": "@korostelevm/ice-cli",
   "version": "1.0.0",
   "description": "asdfasdf",
   "main": "index.js",
@@ -11,8 +11,8 @@
     "url": "git+https://github.com/korostelevm/ice-cli.git"
   },
   "bin": {
-    "@korostelevm/create-project": "bin/create-project",
-    "create-project": "bin/create-project"
+    "@korostelevm/ice": "bin/ice",
+    "ice": "bin/ice"
   },
   "publishConfig": {
     "access": "public"
