@@ -27,7 +27,6 @@ set -x
 #!/bin/bash
 
 set -eo pipefail
-# gem install bundler
 gem install bundler --user-install
 rm -rf lib
 cd service

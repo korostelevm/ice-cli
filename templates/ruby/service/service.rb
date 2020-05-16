@@ -17,7 +17,6 @@ def lambda_handler(event:, context:)
   logger.info('## CONTEXT')
   logger.info(context.to_json)
 
-  object_jawn['vars'] = vars
   object_jawn['event'] = event
   object_jawn['context'] = context
   
@@ -26,7 +25,7 @@ def lambda_handler(event:, context:)
     statusCode:200, 
     headers:{
       'Content-Type':'application/json'
-    }
+    },
     body: JSON.generate(object_jawn)
   }
 
