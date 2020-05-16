@@ -1,0 +1,33 @@
+{
+  "name": "@korostelevm/create-project",
+  "version": "1.0.0",
+  "description": "asdfasdf",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/korostelevm/ice-cli.git"
+  },
+  "bin": {
+    "@korostelevm/create-project": "bin/create-project",
+    "create-project": "bin/create-project"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "cli",
+    "create-project"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/korostelevm/ice-cli/issues"
+  },
+  "homepage": "https://github.com/korostelevm/ice-cli#readme",
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
+}
