@@ -11,7 +11,6 @@
 </template>
  
 <script>
-import { EventBus } from './EventBus.js';
 export default {
     name: 'microfrontend',
     data() {

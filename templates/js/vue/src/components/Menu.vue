@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import { EventBus } from '../EventBus.js';
 export default {
     name: 'Menu',
     data() {
