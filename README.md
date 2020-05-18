@@ -1,6 +1,7 @@
 # ice cli
-Micro application framework for serverless full stack applications on AWS.
-
+Micro application framework for serverless full stack applications on AWS lambda.
+- js/python/ruby backends
+- vue frontend
 
 ## Quick Start
 
@@ -14,6 +15,7 @@ ice
 - backend
 - local dev environment
 - deployment
+
 
 ### Javascript
 ```bash
@@ -48,6 +50,8 @@ ice
     ├── vue.config.js
     └── webpack.config.js
 ```
+
+### Python
 
 ### Ruby
 ```bash
