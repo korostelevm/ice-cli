@@ -1,4 +1,10 @@
 'use strict'
+global.logger = require('tracer').console({
+  format: '<{{title}}> (in {{file}}:{{line}}) {{message}}',
+  error:
+          '<{{title}}> (in {{file}}:{{line}}) {{message}}\nCall Stack:\n{{stack}}' // error format
+});
+
 const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -28,29 +34,23 @@ router.get('/', (req, res) => {
 })
 
 router.post('/users', async (req, res) => {
-  var users = await models.users.get_users(req.body)
+  var users = await models.users.index()
   res.json(users)
 })
 
-router.get('/users/:userId', (req, res) => {
-  res.json({
-    id: req.params.userId,
-    body: req.body
-  })
+router.get('/users/:userId', async (req, res) => {
+  var user = await models.users.get(req.params.userId)
+  res.json(user)
 })
 
-router.put('/users/:userId', (req, res) => {
-  res.json({
-    id: req.params.userId,
-    body: req.body
-  })
+router.put('/users/:userId', async (req, res) => {
+  var user = await models.users.create(req.body)
+  res.json(user)
 })
 
-router.delete('/users/:userId', (req, res) => {
-  res.json({
-    id: req.params.userId,
-    body: req.body
-  })
+router.delete('/users/:userId', async (req, res) => {
+  var user = await models.users.remove(req.params.userId)
+  res.json(user)
 })
 
 router.get('/public/microfrontend.js*', async (req, res) => {

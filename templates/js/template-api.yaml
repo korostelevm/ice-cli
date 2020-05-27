@@ -24,7 +24,6 @@ Resources:
       Handler: service.handler
       Tracing: Active
       MemorySize: 1024
-      # Role: !GetAtt LambdaExecutionRole.Arn
       Runtime: nodejs10.x
       Timeout: 30
       Policies:
