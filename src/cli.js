@@ -48,7 +48,7 @@ async function promptForMissingOptions(options) {
         type: 'list',
         name: 'template',
         message: 'Please choose which project template to use',
-        choices: ['js', 'ruby'],
+        choices: ['js', 'ruby', 'python'],
         default: defaultTemplate,
       });
     }
